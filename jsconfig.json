@@ -1,0 +1,7 @@
+// 절대 경로 기준이 src로 시작됨
+{
+    "compilerOptions": {
+      "baseUrl": "src"
+    },
+    "include": ["src"]
+  }
