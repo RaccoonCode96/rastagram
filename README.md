@@ -15,3 +15,5 @@
 2021-04-04 [firebase create new account, sign in, Auth, createuserwithemailandpassword, setPersistence, onAuthStateChanged] / tistory blog : https://goforit.tistory.com/78
 
 2021-04-05 [google login, github login, Log Out, connect Database (firestore), useHistroy, navigation, signOut, GoogleAuthProvider] / tistory blog : https://goforit.tistory.com/79
+
+2021-04-07 [Take values from Database : collection, get(), Take values from realtime Database  : collection, onSnapshot()] / tistory blog : https://goforit.tistory.com/80
