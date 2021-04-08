@@ -1,14 +1,14 @@
-># Nwitter
+> # Nwitter
 
---- 
+---
 
 ### Nwitter is project of Nomadcoder's lecture
+
 ### I'm studying how to programme React with Firebase now.
 
 ---
 
-
-2021-04-01 [Setup (React, Firebase), routes, router, components, .env(secure API)] / tistory blog :  https://goforit.tistory.com/76
+2021-04-01 [Setup (React, Firebase), routes, router, components, .env(secure API)] / tistory blog : https://goforit.tistory.com/76
 
 2021-04-02 [firebase web api, Absolute Imports, check login, Firebase Authentication, Auth Form] / tistory blog : https://goforit.tistory.com/77
 
@@ -16,4 +16,6 @@
 
 2021-04-05 [google login, github login, Log Out, connect Database (firestore), useHistroy, navigation, signOut, GoogleAuthProvider] / tistory blog : https://goforit.tistory.com/79
 
-2021-04-07 [Take values from Database : collection, get(), Take values from realtime Database  : collection, onSnapshot()] / tistory blog : https://goforit.tistory.com/80
+2021-04-07 [Take values from Database : collection, get(), Take values from realtime Database : collection, onSnapshot()] / tistory blog : https://goforit.tistory.com/80
+
+2021-04-08 [Rweets Delete and Update, Deliver results to database(firestore) : doc(), delete(), update(), Use a toggle button with useState] / tistory blog : https://goforit.tistory.com/81
