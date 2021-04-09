@@ -19,3 +19,5 @@
 2021-04-07 [Take values from Database : collection, get(), Take values from realtime Database : collection, onSnapshot()] / tistory blog : https://goforit.tistory.com/80
 
 2021-04-08 [Rweets Delete and Update, Deliver results to database(firestore) : doc(), delete(), update(), Use a toggle button with useState] / tistory blog : https://goforit.tistory.com/81
+
+2021-04-09 [Changing imgFile to Data_url, Uploading imgFile to firebaseStorage, download_url, FileReader API, Firestorage, a pakage(uuid) of creating rendom Id] / tistory blog : https://goforit.tistory.com/82
