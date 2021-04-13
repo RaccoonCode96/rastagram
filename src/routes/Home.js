@@ -7,7 +7,7 @@ const Home = ({ userObj }) => {
 	const [rweets, setRweets] = useState([]);
 
 	useEffect(() => {
-		dbService
+		const getData = dbService
 			.collection('rweets')
 			.orderBy('createdAt', 'desc')
 			.onSnapshot((snapshot) => {
@@ -17,21 +17,29 @@ const Home = ({ userObj }) => {
 				}));
 				setRweets(rweetArray);
 			});
+		return () => {
+			getData();
+		};
 	}, []);
 
 	return (
-		<div>
-			<RweetFactory userObj={userObj} />
-			<div>
-				{rweets.map((rweet) => (
-					<Rweet
-						key={rweet.id}
-						rweetObj={rweet}
-						isOwner={rweet.creatorId === userObj.uid}
-					/>
-				))}
+		<>
+			<div className="nav_block"></div>
+			<div className="home_container">
+				<div className="main_container">
+					{rweets.map((rweet) => (
+						<Rweet
+							key={rweet.id}
+							rweetObj={rweet}
+							isOwner={rweet.creatorId === userObj.uid}
+						/>
+					))}
+				</div>
+				<div className="side_container">
+					<RweetFactory userObj={userObj} />
+				</div>
 			</div>
-		</div>
+		</>
 	);
 };
 

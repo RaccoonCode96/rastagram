@@ -9,7 +9,9 @@ const Rweet = ({ rweetObj, isOwner }) => {
 		const ok = window.confirm('Are you sure you want to delete this rweet?');
 		if (ok) {
 			await dbService.doc(`rweets/${rweetObj.id}`).delete();
-			await storageService.refFromURL(rweetObj.attachmentUrl).delete();
+			if (rweetObj.attachmentUrl !== '') {
+				await storageService.refFromURL(rweetObj.attachmentUrl).delete();
+			}
 		}
 	};
 	const toggleEditing = () => {
@@ -31,7 +33,7 @@ const Rweet = ({ rweetObj, isOwner }) => {
 		setNewRweet(value);
 	};
 	return (
-		<div>
+		<div className="post">
 			{editing ? (
 				<>
 					{isOwner && (
@@ -52,21 +54,33 @@ const Rweet = ({ rweetObj, isOwner }) => {
 				</>
 			) : (
 				<>
-					<h4>{rweetObj.text}</h4>
-					{rweetObj.attachmentUrl && (
-						<img
-							src={rweetObj.attachmentUrl}
-							alt="rweet img"
-							width="50px"
-							height="50px"
-						/>
-					)}
-					{isOwner && (
-						<>
-							<button onClick={onDeleteClick}>Delete Nweet</button>
-							<button onClick={toggleEditing}>Edit Nweet</button>
-						</>
-					)}
+					<h4 className="rweet_creator">Creator</h4>
+					<div className="rweet_img_container">
+						{rweetObj.attachmentUrl && (
+							<img
+								className="rweet_img"
+								src={rweetObj.attachmentUrl}
+								alt="rweet img"
+								width="50px"
+								height="50px"
+							/>
+						)}
+					</div>
+					<div className="rweet_text_container">
+						<h4 className="rweet_text">{rweetObj.text}</h4>
+						{isOwner && (
+							<>
+								<div className="rweet_btn_controller">
+									<button className="rweet_btn" onClick={onDeleteClick}>
+										Delete
+									</button>
+									<button className="rweet_btn" onClick={toggleEditing}>
+										Edit
+									</button>
+								</div>
+							</>
+						)}
+					</div>
 				</>
 			)}
 		</div>

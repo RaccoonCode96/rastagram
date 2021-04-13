@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import AppRouter from 'components/Router';
 import { authService } from 'fBase';
+import Load from './Load';
 
 function App() {
 	const [init, setInit] = useState(false);
@@ -36,7 +37,7 @@ function App() {
 					userObj={userObj}
 				/>
 			) : (
-				'Initializing...'
+				<Load />
 			)}
 		</>
 	);

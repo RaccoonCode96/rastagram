@@ -51,7 +51,7 @@ const RweetFactory = ({ userObj }) => {
 		setAttachment(null);
 	};
 	return (
-		<form onSubmit={onSubmit}>
+		<form className="form_rweets" onSubmit={onSubmit}>
 			<input
 				value={rweet}
 				onChange={onChange}

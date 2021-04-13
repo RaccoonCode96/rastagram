@@ -28,6 +28,9 @@ const Profile = ({ userObj, refreshUser }) => {
 
 	useEffect(() => {
 		getMyRweets();
+		return () => {
+			setRweets([]);
+		};
 	}, []);
 
 	const onChange = (event) => {
