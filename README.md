@@ -25,3 +25,5 @@
 2021-04-12 [Delete A file of firebase storage(delete, refFromURL), Edit profile, Get my own Rweets(where, orderBy), Change my name of a profile (user, displayName, updateProfile), Object resizing, Cleaning Code,] / tistory blog : https://goforit.tistory.com/83
 
 2021-04-13 [change twitter to instagram CSS(Home structure, Loading page), useEffect error, cleanup function] / tistory blog : https://goforit.tistory.com/84
+
+2021-04-16 [auth, home, profile page CSS] / tistory blog : https://goforit.tistory.com/85

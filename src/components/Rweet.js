@@ -1,3 +1,5 @@
+import { faEllipsisH } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { dbService, storageService } from 'fBase';
 import React, { useState } from 'react';
 
@@ -54,7 +56,19 @@ const Rweet = ({ rweetObj, isOwner }) => {
 				</>
 			) : (
 				<>
-					<h4 className="rweet_creator">Creator</h4>
+					<div className="rweet_creator_container">
+						<img
+							alt="rweet_creator_img"
+							className="rweet_creator_img"
+							src={rweetObj.photoUrl}
+							width="32px"
+							height="32px"
+						/>
+						<h4 className="rweet_creator_name">{rweetObj.displayName}</h4>
+						<div className="rweet_creator_menu">
+							<FontAwesomeIcon icon={faEllipsisH} size="1x" />
+						</div>
+					</div>
 					<div className="rweet_img_container">
 						{rweetObj.attachmentUrl && (
 							<img

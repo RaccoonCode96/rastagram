@@ -1,11 +1,9 @@
 import { authService } from 'fBase';
 import React, { useState } from 'react';
 
-const AuthForm = () => {
+const AuthForm = ({ newAccount, setError }) => {
 	const [email, setEmail] = useState('');
 	const [password, setPassword] = useState('');
-	const [newAccount, setNewAccount] = useState(true);
-	const [error, setError] = useState('');
 
 	const onChange = (event) => {
 		const {
@@ -29,11 +27,12 @@ const AuthForm = () => {
 			setError(error.message);
 		}
 	};
-	const toggleAccount = () => setNewAccount((prev) => !prev);
+
 	return (
 		<>
 			<form onSubmit={onSubmit}>
 				<input
+					className="auth_input"
 					name="email"
 					type="email"
 					placeholder="Email"
@@ -42,6 +41,7 @@ const AuthForm = () => {
 					onChange={onChange}
 				/>
 				<input
+					className="auth_input"
 					name="password"
 					type="password"
 					placeholder="Password"
@@ -50,14 +50,11 @@ const AuthForm = () => {
 					onChange={onChange}
 				/>
 				<input
+					className="auth_btn"
 					type="submit"
 					value={newAccount ? 'Create Account' : 'Sign In'}
 				/>
-				{error}
 			</form>
-			<span onClick={toggleAccount}>
-				{newAccount ? 'Sign In' : 'Create Account'}
-			</span>
 		</>
 	);
 };

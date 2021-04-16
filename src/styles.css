@@ -2,14 +2,17 @@
 @import url('https://fonts.googleapis.com/css2?family=Satisfy&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap');
 
+* {
+	box-sizing: border-box;
+	font-family: 'Roboto', Arial, Helvetica, sans-serif;
+	font-size: 14px;
+}
+
 body {
 	width: 100%;
 	height: 100%;
-	box-sizing: border-box;
 	color: #262626;
 	background-color: #fafafa;
-	font-family: 'Roboto', Arial, Helvetica, sans-serif;
-	font-size: 14px;
 }
 
 /* Loading */
@@ -17,7 +20,7 @@ body {
 .load_container {
 	text-align: center;
 	width: 500px;
-	margin: 35vh auto 0px;
+	margin: 20vh auto 0px;
 }
 
 .load_title {
@@ -34,7 +37,7 @@ body {
 /* Navigation */
 .nav_block {
 	width: 100%;
-	height: 43.61px;
+	height: 54px;
 	display: block;
 }
 
@@ -43,7 +46,7 @@ body {
 	position: fixed;
 	background-color: #ffffff;
 	width: 100%;
-	height: 43.61px;
+	height: 54px;
 	border-bottom: 1px #dbdbdb solid;
 }
 
@@ -59,7 +62,7 @@ body {
 	height: 100%;
 	font-size: 1.8rem;
 	float: left;
-	margin: 5px 0px 0px 30px;
+	margin: 10px 0px 0px 30px;
 	font-family: 'Satisfy', cursive;
 }
 
@@ -76,8 +79,13 @@ body {
 }
 
 .icon_home {
-	font-size: 20px;
+	font-size: 25px;
 	color: #262626;
+}
+
+.nav_portrait {
+	margin-top: 3px;
+	border-radius: 50%;
 }
 
 /* Home Container */
@@ -100,49 +108,66 @@ body {
 }
 
 .post {
-	height: 50%;
+	height: 820px;
 	margin-bottom: 50px;
 }
 
-.form_rweets {
+.form_rweets,
+.profile_section {
 	padding: 10px;
 	width: 270px;
 	float: right;
 	position: fixed;
 	background-color: #ffffff;
 	border: 1px solid #dbdbdb;
-	border-radius: 5px;
+	border-radius: 3px;
 	margin-bottom: 30px;
 	height: 80%;
 }
 
 /* rweet */
 
-.rweet_creator {
+.rweet_creator_container {
 	background-color: #ffffff;
 	border: 1px solid #dbdbdb;
-	border-radius: 5px;
-	height: 7%;
+	border-radius: 3px;
+	height: 60px;
 	width: 100%;
-	border-radius: 5px;
+	display: flex;
+	align-items: center;
+}
+
+.rweet_creator_img {
+	border-radius: 50%;
+	margin: 0px 15px 0px 15px;
+}
+
+.rweet_creator_name {
+	font-size: 14px;
+	font-weight: 600;
 }
 
 .rweet_img_container {
 	background-color: #ffffff;
 	border: 1px solid #dbdbdb;
-	height: 73%;
+	height: 616px;
 	width: 100%;
-	border-radius: 5px;
+	border-radius: 3px;
+}
+
+.rweet_creator_menu {
+	font-size: 14px;
+	margin: 0 0 0 465px;
 }
 
 .rweet_img {
 	height: 100%;
 	width: 100%;
-	border-radius: 5px;
+	border-radius: 3px;
 }
 
 .rweet_text_container {
-	height: 20%;
+	height: 140px;
 	width: 100%;
 	display: flex;
 }
@@ -151,7 +176,7 @@ body {
 	padding: 10px;
 	background-color: #ffffff;
 	border: 1px solid #dbdbdb;
-	border-radius: 5px;
+	border-radius: 3px;
 	height: 85%;
 	width: 90%;
 }
@@ -162,4 +187,152 @@ body {
 
 .rweet_btn {
 	display: flex;
+}
+
+/* profile */
+
+.profile_show {
+	margin-bottom: 30px;
+	text-align: center;
+}
+
+.profile_portrait {
+	display: inline-block;
+	margin: 20px 0 10px;
+	border-radius: 50%;
+	width: 200px;
+	height: 200px;
+}
+
+.profile_name {
+	font-size: 2rem;
+	margin-bottom: 10px;
+}
+
+/* Auth */
+
+.auth_container {
+	background-color: #ffffff;
+	border: 1px solid #dbdbdb;
+	border-radius: 3px;
+	height: fit-content;
+	width: 350px;
+	margin: 120px auto 0;
+}
+
+.auth_title {
+	width: 100%;
+	text-align: center;
+	font-size: 3rem;
+	font-family: 'Satisfy', cursive;
+	margin: 30px 0 45px;
+}
+
+.auth_form {
+	width: 100%;
+	height: 130px;
+}
+
+.auth_input {
+	background-color: #fafafa;
+	border: 1px solid #dbdbdb;
+	border-radius: 3px;
+	width: 75%;
+	height: 36px;
+	display: block;
+	margin: 5px auto;
+}
+
+.auth_btn {
+	background-color: #b2dffc;
+	border: 1px solid #dbdbdb;
+	border-radius: 3px;
+	width: 75%;
+	height: 30px;
+	display: block;
+	margin: 10px auto;
+	font-weight: 500;
+	color: #fafafa;
+	cursor: pointer;
+}
+
+.auth_mode_container {
+	background-color: #ffffff;
+	border: 1px solid #dbdbdb;
+	border-radius: 3px;
+	height: 63px;
+	width: 350px;
+	margin: 10px auto 0;
+	display: flex;
+	align-items: center;
+}
+
+.auth_mode {
+	width: 100%;
+	text-align: center;
+	font-weight: 500;
+	font-family: 'Roboto', Arial, Helvetica, sans-serif;
+	font-size: 14px;
+	color: #8e8e8e;
+	cursor: pointer;
+}
+
+.auth_ortext {
+	height: 15px;
+	width: 295.8px;
+	display: flex;
+	align-items: center;
+	margin: 5px auto;
+}
+
+.ortext_slice {
+	width: 114px;
+	height: 1px;
+	border-bottom: 1px solid #dbdbdb;
+}
+
+.ortext {
+	text-align: center;
+	width: 32px;
+	margin: 0px 17px;
+	font-weight: 500;
+	font-family: 'Roboto', Arial, Helvetica, sans-serif;
+	font-size: 14px;
+	color: #8e8e8e;
+}
+
+.auth_socialLogin {
+	width: 75%;
+	height: 70px;
+	margin: 30px auto;
+}
+
+.socialLogin_btn {
+	width: 100%;
+	height: 30px;
+	display: block;
+	margin: 10px auto;
+	cursor: pointer;
+	font-family: 'Roboto', Arial, Helvetica, sans-serif;
+	font-size: 14px;
+	color: #8e8e8e;
+	font-weight: 500;
+}
+
+.icon_google {
+	margin-right: 10px;
+	font-size: 15px;
+}
+
+.icon_github {
+	margin-right: 10px;
+	font-size: 15px;
+}
+
+.auth_error {
+	text-align: center;
+	color: red;
+	font-size: 14px;
+	margin: 20px 0;
+	font-weight: 600;
 }

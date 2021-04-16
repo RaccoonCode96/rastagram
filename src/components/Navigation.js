@@ -19,11 +19,22 @@ const Navigation = ({ userObj }) => (
 						</Link>
 					</li>
 					<li className="nav_item">
-						<Link to="/profile">{userObj.displayName}'s Profile</Link>
+						<Link to="/profile">
+							{/* {userObj.photoURL && ( */}
+							<img
+								className="nav_portrait"
+								alt="user_photo"
+								src={userObj.photoURL}
+								width="25px"
+								height="25px"
+							/>
+							{/* )} */}
+						</Link>
 					</li>
 				</ul>
 			</nav>
 		</div>
+		<div className="nav_block"></div>
 	</>
 );
 export default Navigation;

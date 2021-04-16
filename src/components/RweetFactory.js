@@ -5,6 +5,7 @@ import { v4 as uuidv4 } from 'uuid';
 const RweetFactory = ({ userObj }) => {
 	const [rweet, setRweet] = useState('');
 	const [attachment, setAttachment] = useState('');
+
 	const onSubmit = async (event) => {
 		event.preventDefault();
 		let attachmentUrl = '';
@@ -20,6 +21,8 @@ const RweetFactory = ({ userObj }) => {
 			createdAt: Date.now(),
 			creatorId: userObj.uid,
 			attachmentUrl,
+			photoUrl: userObj.photoURL,
+			displayName: userObj.displayName,
 		};
 		await dbService.collection('rweets').add(rweetObj);
 		setRweet('');
@@ -63,7 +66,7 @@ const RweetFactory = ({ userObj }) => {
 			<input type="submit" value="Rweet" />
 			{attachment && (
 				<div>
-					<img src={attachment} alt="attachment" width="50px" height="50px" />
+					<img src={attachment} alt="attachment" width="220px" height="220px" />
 					<button onClick={onClearAttachment}>Clear</button>
 				</div>
 			)}

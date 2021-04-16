@@ -24,7 +24,6 @@ const Home = ({ userObj }) => {
 
 	return (
 		<>
-			<div className="nav_block"></div>
 			<div className="home_container">
 				<div className="main_container">
 					{rweets.map((rweet) => (
