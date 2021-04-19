@@ -2,9 +2,13 @@ import Rweet from 'components/Rweet';
 import { dbService } from 'fBase';
 import React, { useEffect, useState } from 'react';
 import RweetFactory from 'components/RweetFactory';
+import Modal from 'components/Modal';
 
 const Home = ({ userObj }) => {
 	const [rweets, setRweets] = useState([]);
+	const [rweetObj, setRweetObj] = useState();
+	const [onModal, setOnModal] = useState(false);
+	const [isOwner, setIsOwner] = useState();
 
 	useEffect(() => {
 		const getData = dbService
@@ -30,7 +34,10 @@ const Home = ({ userObj }) => {
 						<Rweet
 							key={rweet.id}
 							rweetObj={rweet}
-							isOwner={rweet.creatorId === userObj.uid}
+							setOnModal={setOnModal}
+							setRweetObj={setRweetObj}
+							setIsOwner={setIsOwner}
+							userObj={userObj}
 						/>
 					))}
 				</div>
@@ -38,6 +45,16 @@ const Home = ({ userObj }) => {
 					<RweetFactory userObj={userObj} />
 				</div>
 			</div>
+			{onModal ? (
+				<Modal
+					rweetObj={rweetObj}
+					setRweetObj={setRweetObj}
+					setOnModal={setOnModal}
+					isOwner={isOwner}
+				/>
+			) : (
+				<></>
+			)}
 		</>
 	);
 };
