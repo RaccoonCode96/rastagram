@@ -30,4 +30,4 @@
 
 2021-04-19 [Make a Menu btn of home's post box, Make a Modal to show post controller, handle event bubbling in react, study and use CSS flex] / tistory blog : https://goforit.tistory.com/86
 
-2021-04-20 [Make a Modal at profile-route, reRendering from firebase `get()` way, CSS : side-section] / tistory blog : https://goforit.tistory.com/87
+2021-04-20 [Make a Modal at profile-route, reRendering from firebase 'get()' way, CSS : side-section] / tistory blog : https://goforit.tistory.com/87
