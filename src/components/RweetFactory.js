@@ -1,3 +1,6 @@
+import { faTimesCircle } from '@fortawesome/free-regular-svg-icons';
+import { faImage, faPaperPlane } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { dbService, storageService } from 'fBase';
 import React, { useState } from 'react';
 import { v4 as uuidv4 } from 'uuid';
@@ -55,21 +58,46 @@ const RweetFactory = ({ userObj }) => {
 	};
 	return (
 		<form className="form_rweets" onSubmit={onSubmit}>
-			<input
+			<div className="preview_container">
+				<>
+					<label className="rweet_file_btn" htmlFor="input-file">
+						<FontAwesomeIcon icon={faImage} size="4x" />
+					</label>
+					<input
+						type="file"
+						id="input-file"
+						accept="image/*"
+						onChange={onFileChange}
+					/>
+				</>
+				{attachment && (
+					<div>
+						<img
+							className="real_preview"
+							src={attachment}
+							alt="attachment"
+							width="235.6px"
+							height="220px"
+						/>
+						<button className="preview_cancel" onClick={onClearAttachment}>
+							<FontAwesomeIcon icon={faTimesCircle} size="1x" />
+						</button>
+					</div>
+				)}
+			</div>
+			<textarea
+				className="form_rweets_text"
 				value={rweet}
 				onChange={onChange}
-				type="text"
 				placeholder="What's on your mind?"
 				maxLength={120}
-			/>
-			<input type="file" accept="image/*" onChange={onFileChange} />
-			<input type="submit" value="Rweet" />
-			{attachment && (
-				<div>
-					<img src={attachment} alt="attachment" width="220px" height="220px" />
-					<button onClick={onClearAttachment}>Clear</button>
-				</div>
-			)}
+			></textarea>
+			<div className="form_rweet_controller">
+				<label className="rweet_submit_btn" htmlFor="input-submit">
+					<FontAwesomeIcon icon={faPaperPlane} size="2x" />
+				</label>
+				<input type="submit" id="input-submit" value="Rweet" />
+			</div>
 		</form>
 	);
 };

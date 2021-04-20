@@ -3,10 +3,15 @@ import { authService, dbService } from 'fBase';
 import React, { useEffect, useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import ProfileFactory from 'components/ProfileFactory';
+import Modal from 'components/Modal';
 
 const Profile = ({ userObj, refreshUser }) => {
 	const history = useHistory();
 	const [rweets, setRweets] = useState([]);
+	const [rweetObj, setRweetObj] = useState();
+	const [onModal, setOnModal] = useState(false);
+	const [isOwner, setIsOwner] = useState();
+	const [updated, setUpdated] = useState();
 
 	const onLogOutClick = () => {
 		authService.signOut();
@@ -30,8 +35,12 @@ const Profile = ({ userObj, refreshUser }) => {
 		getMyRweets();
 		return () => {
 			setRweets([]);
+			setRweetObj();
+			setOnModal(false);
+			setIsOwner();
+			getMyRweets();
 		};
-	}, []);
+	}, [updated]);
 	return (
 		<>
 			<div className="home_container">
@@ -40,7 +49,10 @@ const Profile = ({ userObj, refreshUser }) => {
 						<Rweet
 							key={rweet.id}
 							rweetObj={rweet}
-							isOwner={rweet.creatorId === userObj.uid}
+							setOnModal={setOnModal}
+							setRweetObj={setRweetObj}
+							setIsOwner={setIsOwner}
+							userObj={userObj}
 						/>
 					))}
 				</div>
@@ -65,6 +77,17 @@ const Profile = ({ userObj, refreshUser }) => {
 					</div>
 				</div>
 			</div>
+			{onModal ? (
+				<Modal
+					setUpdated={setUpdated}
+					rweetObj={rweetObj}
+					setRweetObj={setRweetObj}
+					setOnModal={setOnModal}
+					isOwner={isOwner}
+				/>
+			) : (
+				<></>
+			)}
 		</>
 	);
 };

@@ -1,19 +1,24 @@
 import React, { useState } from 'react';
 import { dbService, storageService } from 'fBase';
+import { useRouteMatch } from 'react-router-dom';
 
-const Modal = ({ rweetObj, setRweetObj, setOnModal, isOwner }) => {
+const Modal = ({ rweetObj, setRweetObj, setOnModal, isOwner, setUpdated }) => {
 	const [newRweet, setNewRweet] = useState(rweetObj.text);
 	const [editing, setEditing] = useState(false);
+	let isProfile = useRouteMatch('/profile');
 
-	const onDeleteClick = async (event) => {
+	const onDeleteClick = async () => {
 		const ok = window.confirm('Are you sure you want to delete this rweet?');
 		if (ok) {
 			await dbService.doc(`rweets/${rweetObj.id}`).delete();
 			if (rweetObj.attachmentUrl !== '') {
 				await storageService.refFromURL(rweetObj.attachmentUrl).delete();
 			}
+			goOut_modal();
+			if (isProfile) {
+				setUpdated(Date.now());
+			}
 		}
-		goOut_modal();
 	};
 
 	const onSubmit = async (event) => {
@@ -22,8 +27,11 @@ const Modal = ({ rweetObj, setRweetObj, setOnModal, isOwner }) => {
 			await dbService.doc(`rweets/${rweetObj.id}`).update({
 				text: newRweet,
 			});
+			goOut_modal();
+			if (isProfile) {
+				setUpdated(Date.now());
+			}
 		}
-		goOut_modal();
 	};
 
 	const onChange = (event) => {

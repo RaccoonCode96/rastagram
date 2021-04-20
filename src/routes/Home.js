@@ -23,6 +23,10 @@ const Home = ({ userObj }) => {
 			});
 		return () => {
 			getData();
+			setRweets([]);
+			setRweetObj();
+			setOnModal(false);
+			setIsOwner();
 		};
 	}, []);
 

@@ -1,4 +1,4 @@
-import { faEllipsisH } from '@fortawesome/free-solid-svg-icons';
+import { faEllipsisH, faImage } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import React from 'react';
 
@@ -26,6 +26,11 @@ const Rweet = ({ userObj, rweetObj, setOnModal, setRweetObj, setIsOwner }) => {
 					</button>
 				</div>
 				<div className="rweet_img_container">
+					<FontAwesomeIcon
+						className="rweet_file_btn"
+						icon={faImage}
+						size="4x"
+					/>
 					{rweetObj.attachmentUrl && (
 						<img
 							className="rweet_img"
