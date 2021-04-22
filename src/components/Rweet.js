@@ -42,7 +42,18 @@ const Rweet = ({ userObj, rweetObj, setOnModal, setRweetObj, setIsOwner }) => {
 					)}
 				</div>
 				<div className="rweet_text_container">
-					<h4 className="rweet_text">{rweetObj.text}</h4>
+					<div className="rweet_text">
+						<span className="rweet_text_userName">{rweetObj.displayName}</span>
+						{rweetObj.text}
+						{/* {rweetObj.text.split('\n').map((line) => {
+							return (
+								<span key={line.id}>
+									{line}
+									<br />
+								</span>
+							);
+						})} */}
+					</div>
 				</div>
 			</>
 		</div>

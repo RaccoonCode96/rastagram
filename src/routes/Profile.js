@@ -1,22 +1,18 @@
 import Rweet from 'components/Rweet';
-import { authService, dbService } from 'fBase';
+import { dbService } from 'fBase';
 import React, { useEffect, useState } from 'react';
-import { useHistory } from 'react-router-dom';
 import ProfileFactory from 'components/ProfileFactory';
 import Modal from 'components/Modal';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faCaretDown, faImage } from '@fortawesome/free-solid-svg-icons';
 
 const Profile = ({ userObj, refreshUser }) => {
-	const history = useHistory();
 	const [rweets, setRweets] = useState([]);
 	const [rweetObj, setRweetObj] = useState();
 	const [onModal, setOnModal] = useState(false);
 	const [isOwner, setIsOwner] = useState();
 	const [updated, setUpdated] = useState();
-
-	const onLogOutClick = () => {
-		authService.signOut();
-		history.push('/');
-	};
+	const [onProfile, setOnProfile] = useState(false);
 
 	const getMyRweets = async () => {
 		const rweetObj = await dbService
@@ -29,6 +25,10 @@ const Profile = ({ userObj, refreshUser }) => {
 			...doc.data(),
 		}));
 		setRweets(rweetArray);
+	};
+
+	const toggleProfileUpdate = () => {
+		setOnProfile((prev) => !prev);
 	};
 
 	useEffect(() => {
@@ -59,21 +59,46 @@ const Profile = ({ userObj, refreshUser }) => {
 				<div className="side_container">
 					<div className="profile_section">
 						<div className="profile_show">
-							{userObj.photoURL && (
-								<img
-									className="profile_portrait"
-									alt="user_photo"
-									src={userObj.photoURL}
-									width="50px"
-									height="50px"
-								/>
-							)}
-							{userObj.displayName && (
-								<h2 className="profile_name">{userObj.displayName}</h2>
-							)}
-							<button onClick={onLogOutClick}>Log Out</button>
+							<div className="profile_portrait">
+								<>
+									{userObj.photoURL && (
+										<img
+											className="real_portrait"
+											alt="user_photo"
+											src={userObj.photoURL}
+											width="50px"
+											height="50px"
+										/>
+									)}
+									<FontAwesomeIcon
+										className="default_portrait"
+										icon={faImage}
+										size="4x"
+									/>
+								</>
+							</div>
+							<div className="profile_name_container">
+								{userObj.displayName && (
+									<>
+										<h2 className="profile_name">{userObj.displayName}</h2>
+										<FontAwesomeIcon
+											onClick={toggleProfileUpdate}
+											className="profile_update_btn"
+											icon={faCaretDown}
+											size="2x"
+										/>
+									</>
+								)}
+							</div>
+							<div className="profile_info"></div>
 						</div>
-						<ProfileFactory refreshUser={refreshUser} userObj={userObj} />
+						{onProfile && (
+							<ProfileFactory
+								setOnProfile={setOnProfile}
+								refreshUser={refreshUser}
+								userObj={userObj}
+							/>
+						)}
 					</div>
 				</div>
 			</div>

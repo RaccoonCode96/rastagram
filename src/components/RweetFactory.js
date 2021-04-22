@@ -91,6 +91,9 @@ const RweetFactory = ({ userObj }) => {
 				onChange={onChange}
 				placeholder="What's on your mind?"
 				maxLength={120}
+				rows="2"
+				cols="20"
+				wrap="hard"
 			></textarea>
 			<div className="form_rweet_controller">
 				<label className="rweet_submit_btn" htmlFor="input-submit">

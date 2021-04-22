@@ -53,22 +53,24 @@ body {
 
 .nav_container {
 	align-items: center;
-	min-width: 997px;
-	width: 60%;
+	padding: 0 20px;
+	max-width: 970px;
 	margin: 0 auto;
 	height: 100%;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
 }
 
 .head_logo {
-	height: 100%;
-	font-size: 1.8rem;
+	font-weight: 700;
+	height: fit-content;
+	font-size: 1.5rem;
 	float: left;
-	margin: 10px 0px 0px 30px;
 	font-family: 'Satisfy', cursive;
 }
 
 .nav_items {
-	margin-right: 30px;
 	float: right;
 	height: 100%;
 	display: flex;
@@ -92,31 +94,35 @@ body {
 /* Home Container */
 
 .home_container {
-	height: 1400px;
-	max-width: 935px;
+	padding: 0 20px;
+	height: fit-content;
+	max-width: 985px;
 	display: flex;
-	margin: 0px auto 30px;
+	margin: 0px auto;
 	padding-top: 30px;
 }
 
 .side_container {
-	width: 30%;
+	width: 293px;
 }
 
 .main_container {
 	width: 614px;
-	margin-right: 30px;
+	margin-right: 20px;
+	font-family: 'Roboto', Arial, Helvetica, sans-serif;
 }
 
 .post {
-	height: 820px;
-	margin-bottom: 50px;
+	min-width: 400px;
+	max-width: 614px;
+	height: fit-content;
+	margin-bottom: 20px;
 }
 
 .form_rweets,
 .profile_section {
 	padding: 10px;
-	width: 270px;
+	width: 293px;
 	float: right;
 	position: fixed;
 	background-color: #ffffff;
@@ -124,6 +130,7 @@ body {
 	border-radius: 3px;
 	margin-bottom: 30px;
 	height: fit-content;
+	font-family: 'Roboto', Arial, Helvetica, sans-serif;
 }
 
 /* rweet */
@@ -141,12 +148,12 @@ body {
 
 .rweet_creator_img {
 	border-radius: 50%;
-	margin: 0px 15px 0px 15px;
+	margin: 0px 10px 0px 15px;
 }
 
 .rweet_creator_name {
+	font-weight: 500;
 	font-size: 14px;
-	font-weight: 600;
 }
 
 .rweet_img_container {
@@ -154,9 +161,10 @@ body {
 	justify-content: center;
 	align-items: center;
 	position: relative;
-	background-color: #ffffff;
+	background-color: black;
 	border: 1px solid #dbdbdb;
-	height: 616px;
+	min-height: 400px;
+	height: fit-content;
 	width: 100%;
 	border-radius: 3px;
 }
@@ -180,7 +188,8 @@ body {
 }
 
 .rweet_text_container {
-	height: 140px;
+	font-size: 14px;
+	height: fit-content;
 	width: 100%;
 	display: flex;
 }
@@ -190,8 +199,16 @@ body {
 	background-color: #ffffff;
 	border: 1px solid #dbdbdb;
 	border-radius: 3px;
-	height: 85%;
+	min-height: 100px;
+	height: fit-content;
 	width: 100%;
+	white-space: pre-wrap;
+	word-break: break-all;
+}
+
+.rweet_text_userName {
+	font-weight: 500;
+	margin-right: 5px;
 }
 
 /* RweetFactory */
@@ -220,6 +237,9 @@ body {
 }
 .real_preview {
 	position: relative;
+	width: 255.55px;
+	height: 220px;
+	border-radius: 3px;
 }
 
 .preview_cancel {
@@ -265,19 +285,93 @@ body {
 .profile_show {
 	margin-bottom: 30px;
 	text-align: center;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
 }
 
 .profile_portrait {
-	display: inline-block;
-	margin: 20px 0 10px;
-	border-radius: 50%;
-	width: 200px;
-	height: 200px;
+	margin-top: 20px;
+	width: 250px;
+	height: 250px;
+	position: relative;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+}
+
+.profile_name_container {
+	margin-top: 10px;
+	width: 250px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
 }
 
 .profile_name {
-	font-size: 2rem;
-	margin-bottom: 10px;
+	font-size: 1.7rem;
+	margin-right: 10px;
+}
+
+.profile_update_btn {
+	font-size: 25px;
+}
+
+.default_portrait {
+	color: #dbdbdb;
+	position: absolute;
+	top: 70px;
+}
+
+.real_portrait {
+	z-index: 2;
+	border-radius: 50%;
+	width: 250px;
+	height: 250px;
+}
+
+.profile_menu {
+	width: 100%;
+	height: fit-content;
+	border-radius: 3px;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: stretch;
+}
+
+.profile_btn {
+	cursor: pointer;
+	height: 30px;
+	border: 1px solid #dbdbdb;
+	border-radius: 3px;
+	outline: 0;
+	background-color: #fafafa;
+	font-weight: 500;
+	margin-bottom: 5px;
+}
+
+.editing_form {
+	display: flex;
+	flex-direction: column;
+	align-items: stretch;
+}
+
+.name_form_container {
+	display: flex;
+	padding: 10px;
+	justify-content: space-between;
+}
+
+.name_label {
+	font-size: 15px;
+	line-height: 30px;
+	display: inline-block;
+	vertical-align: middle;
+}
+
+.name_form {
+	width: 190px;
 }
 
 /* Auth */

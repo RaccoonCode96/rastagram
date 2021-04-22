@@ -1,16 +1,31 @@
-import { storageService } from 'fBase';
+import { authService, storageService } from 'fBase';
 import React, { useState } from 'react';
 import { v4 as uuidv4 } from 'uuid';
+import { useHistory } from 'react-router-dom';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faImage } from '@fortawesome/free-solid-svg-icons';
+import { faTimesCircle } from '@fortawesome/free-regular-svg-icons';
 
-const ProfileFactory = ({ userObj, refreshUser }) => {
+const ProfileFactory = ({ userObj, refreshUser, setOnProfile }) => {
 	const [newDisplayName, setNewDisplayName] = useState(userObj.displayName);
 	const [attachment, setAttachment] = useState('');
+	const [onEditing, setEditing] = useState(false);
+	const history = useHistory();
+
+	const onLogOutClick = () => {
+		authService.signOut();
+		history.push('/');
+	};
 
 	const onChange = (event) => {
 		const {
 			target: { value },
 		} = event;
 		setNewDisplayName(value);
+	};
+
+	const toggleEditing = () => {
+		setEditing((prev) => !prev);
 	};
 
 	// const updateUrl = async (Array, attachmentUrl) => {
@@ -56,7 +71,9 @@ const ProfileFactory = ({ userObj, refreshUser }) => {
 				displayName: newDisplayName,
 			});
 		}
+
 		refreshUser();
+		setOnProfile(false);
 	};
 
 	const onFileChange = (event) => {
@@ -79,22 +96,71 @@ const ProfileFactory = ({ userObj, refreshUser }) => {
 	};
 
 	return (
-		<form onSubmit={onSubmit}>
-			<input
-				type="text"
-				placeholder="Display name"
-				onChange={onChange}
-				value={newDisplayName}
-			/>
-			<input type="file" accept="image/*" onChange={onFileChange} />
-			<input type="submit" value="Update Profile" />
-			{attachment && (
-				<div>
-					<img src={attachment} alt="attachment" width="50px" height="50px" />
-					<button onClick={onClearAttachment}>Clear</button>
-				</div>
+		<div className="profile_menu">
+			{onEditing ? (
+				<>
+					<form onSubmit={onSubmit} className="editing_form">
+						<div className="preview_container">
+							<>
+								<label className="rweet_file_btn" htmlFor="input-file">
+									<FontAwesomeIcon icon={faImage} size="4x" />
+								</label>
+								<input
+									type="file"
+									id="input-file"
+									accept="image/*"
+									onChange={onFileChange}
+								/>
+							</>
+							{attachment && (
+								<div>
+									<img
+										className="real_preview"
+										src={attachment}
+										alt="attachment"
+										width="255.55px"
+										height="220px"
+									/>
+									<button
+										className="preview_cancel"
+										onClick={onClearAttachment}
+									>
+										<FontAwesomeIcon icon={faTimesCircle} size="1x" />
+									</button>
+								</div>
+							)}
+						</div>
+						<div className="name_form_container">
+							<div className="name_label">Name : </div>
+							<input
+								className="name_form"
+								type="text"
+								placeholder="Display name"
+								onChange={onChange}
+								value={newDisplayName}
+							/>
+						</div>
+						<input
+							className="profile_btn"
+							type="submit"
+							value="Update Profile"
+						/>
+						<button className="profile_btn" onClick={toggleEditing}>
+							cancel
+						</button>
+					</form>
+				</>
+			) : (
+				<>
+					<button className="profile_btn" onClick={toggleEditing}>
+						Edit
+					</button>
+					<button className="profile_btn" onClick={onLogOutClick}>
+						Log Out
+					</button>
+				</>
 			)}
-		</form>
+		</div>
 	);
 };
 
