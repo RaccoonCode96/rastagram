@@ -36,4 +36,4 @@
 
 2021-04-27 [Handle a OnError of imgTag, Reflect a writer info from updating user profile] / tistory blog : https://goforit.tistory.com/89
 
-2021-04-28 [Improve Reflecting a writer info(handle the order of async with 'promise.all'), Prevent double submit, get user profile from google when someone Login in thier google Account at first] / tistory blog : https://goforit.tistory.com/89
+2021-04-28 [Improve Reflecting a writer info(handle the order of async with 'promise.all'), Prevent double submit, get user profile from google when someone Login in thier google Account at first] / tistory blog : https://goforit.tistory.com/90
