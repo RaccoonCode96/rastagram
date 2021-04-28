@@ -8,28 +8,33 @@ import { v4 as uuidv4 } from 'uuid';
 const RweetFactory = ({ userObj }) => {
 	const [rweet, setRweet] = useState('');
 	const [attachment, setAttachment] = useState('');
+	const [doubleSubmit, setDoubleSubmit] = useState(false);
 
 	const onSubmit = async (event) => {
 		event.preventDefault();
-		let attachmentUrl = '';
-		if (attachment !== '') {
-			const attachmentRef = storageService
-				.ref()
-				.child(`${userObj.uid}/${uuidv4()}`);
-			const response = await attachmentRef.putString(attachment, 'data_url');
-			attachmentUrl = await response.ref.getDownloadURL();
+		if (!doubleSubmit) {
+			setDoubleSubmit(true);
+			let attachmentUrl = '';
+			if (attachment !== '') {
+				const attachmentRef = storageService
+					.ref()
+					.child(`${userObj.uid}/${uuidv4()}`);
+				const response = await attachmentRef.putString(attachment, 'data_url');
+				attachmentUrl = await response.ref.getDownloadURL();
+			}
+			setAttachment('');
+			const rweetObj = {
+				text: rweet,
+				createdAt: Date.now(),
+				creatorId: userObj.uid,
+				attachmentUrl,
+				photoUrl: userObj.photoURL,
+				displayName: userObj.displayName,
+			};
+			await dbService.collection('rweets').add(rweetObj);
+			setRweet('');
+			setDoubleSubmit(false);
 		}
-		const rweetObj = {
-			text: rweet,
-			createdAt: Date.now(),
-			creatorId: userObj.uid,
-			attachmentUrl,
-			photoUrl: userObj.photoURL,
-			displayName: userObj.displayName,
-		};
-		await dbService.collection('rweets').add(rweetObj);
-		setRweet('');
-		setAttachment('');
 	};
 
 	const onChange = (event) => {
@@ -54,7 +59,7 @@ const RweetFactory = ({ userObj }) => {
 	};
 
 	const onClearAttachment = () => {
-		setAttachment(null);
+		setAttachment('');
 	};
 	return (
 		<form className="form_rweets" onSubmit={onSubmit}>
@@ -94,6 +99,7 @@ const RweetFactory = ({ userObj }) => {
 				rows="2"
 				cols="20"
 				wrap="hard"
+				required
 			></textarea>
 			<div className="form_rweet_controller">
 				<label className="rweet_submit_btn" htmlFor="input-submit">

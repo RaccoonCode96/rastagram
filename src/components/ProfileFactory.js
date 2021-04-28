@@ -1,16 +1,25 @@
-import { authService, storageService } from 'fBase';
+import { authService, dbService, storageService } from 'fBase';
 import React, { useState } from 'react';
 import { v4 as uuidv4 } from 'uuid';
 import { useHistory } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faImage } from '@fortawesome/free-solid-svg-icons';
 import { faTimesCircle } from '@fortawesome/free-regular-svg-icons';
+import { useRouteMatch } from 'react-router-dom';
 
-const ProfileFactory = ({ userObj, refreshUser, setOnProfile }) => {
+const ProfileFactory = ({
+	rweets,
+	userObj,
+	refreshUser,
+	setOnProfile,
+	setUpdated,
+}) => {
 	const [newDisplayName, setNewDisplayName] = useState(userObj.displayName);
 	const [attachment, setAttachment] = useState('');
 	const [onEditing, setEditing] = useState(false);
+	const [doubleSubmit, setDoubleSubmit] = useState(false);
 	const history = useHistory();
+	let isProfile = useRouteMatch('/profile');
 
 	const onLogOutClick = () => {
 		authService.signOut();
@@ -28,18 +37,9 @@ const ProfileFactory = ({ userObj, refreshUser, setOnProfile }) => {
 		setEditing((prev) => !prev);
 	};
 
-	// const updateUrl = async (Array, attachmentUrl) => {
-	// 	for (let docObj of Array) {
-	// 		await dbService.doc(`rweet/${docObj.id}`).update({
-	// 			photoUrl: attachmentUrl,
-	// 		});
-	// 	}
-	// };
-
-	const onSubmit = async (event) => {
-		event.preventDefault();
-		let attachmentUrl = '';
+	const updatePhoto = async () => {
 		if (attachment !== '') {
+			let attachmentUrl = '';
 			const attachmentRef = storageService
 				.ref()
 				.child(`${userObj.uid}/${uuidv4()}`);
@@ -48,32 +48,44 @@ const ProfileFactory = ({ userObj, refreshUser, setOnProfile }) => {
 			await userObj.updateProfile({
 				photoURL: attachmentUrl,
 			});
-			// profile 수정시 모든 트윗에 반영하기
-			// const rweetObj = await dbService
-			// 	.collection('rweets')
-			// 	.where('creatorId', '==', userObj.uid)
-			// 	.get();
-			// const rweetArray = rweetObj.docs.map((doc) => ({
-			// 	id: doc.id,
-			// }));
+			const update = rweets.map(async (rweet) => {
+				dbService.doc(`rweets/${rweet.id}`).update({
+					photoUrl: attachmentUrl,
+				});
+			});
+			await Promise.all(update);
 		}
+	};
 
-		// rweetArray.forEach((docObj) => {
-		// 	console.log(docObj.id);
-		// 	// 	dbService.doc(`rweet/${docObj.id}`).update({
-		// 	// 		photoUrl: attachmentUrl,
-		// 	// 	});
-		// });
-
-		setAttachment('');
+	const updateDisplayName = async () => {
 		if (userObj.displayName !== newDisplayName) {
 			await userObj.updateProfile({
 				displayName: newDisplayName,
 			});
+			const update = rweets.map(async (rweet) => {
+				dbService.doc(`rweets/${rweet.id}`).update({
+					displayName: newDisplayName,
+				});
+			});
+			await Promise.all(update);
 		}
+	};
 
-		refreshUser();
-		setOnProfile(false);
+	const onSubmit = async (event) => {
+		event.preventDefault();
+		if (!doubleSubmit) {
+			setDoubleSubmit(true);
+			updatePhoto();
+			updateDisplayName();
+			await Promise.all([updatePhoto(), updateDisplayName()]);
+			setAttachment('');
+			refreshUser();
+			setOnProfile(false);
+			if (isProfile) {
+				setUpdated(Date.now());
+			}
+			setDoubleSubmit(false);
+		}
 	};
 
 	const onFileChange = (event) => {

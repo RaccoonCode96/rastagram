@@ -33,3 +33,7 @@
 2021-04-20 [Make a Modal at profile-route, reRendering from firebase 'get()' way, CSS : side-section] / tistory blog : https://goforit.tistory.com/87
 
 2021-04-22 [Responsive web : Nav_bar, Maintain width&height rate of img / profile-update CSS /Print out new line(/n) in post box ] / tistory blog : https://goforit.tistory.com/88
+
+2021-04-27 [Handle a OnError of imgTag, Reflect a writer info from updating user profile] / tistory blog : https://goforit.tistory.com/89
+
+2021-04-28 [Improve Reflecting a writer info(handle the order of async with 'promise.all'), Prevent double submit, get user profile from google when someone Login in thier google Account at first] / tistory blog : https://goforit.tistory.com/89

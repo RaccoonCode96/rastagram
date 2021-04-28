@@ -59,14 +59,17 @@ const Modal = ({ rweetObj, setRweetObj, setOnModal, isOwner, setUpdated }) => {
 						{isOwner && (
 							<>
 								<form className="edit_form" onSubmit={onSubmit}>
-									<input
-										className="edit_text"
-										type="text"
-										placeholder="Edit your Rweet"
-										value={newRweet}
+									<textarea
 										required
+										className="edit_text"
+										value={newRweet}
 										onChange={onChange}
-									/>
+										placeholder="Edit your Rweet"
+										maxLength={120}
+										rows="2"
+										cols="20"
+										wrap="hard"
+									></textarea>
 									<div className="edit_controller">
 										<input
 											className="edit_btn1"

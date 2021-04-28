@@ -18,6 +18,7 @@ body {
 /* Loading */
 
 .load_container {
+	animation: fadein 0.15s;
 	text-align: center;
 	width: 500px;
 	margin: 20vh auto 0px;
@@ -52,6 +53,7 @@ body {
 }
 
 .nav_container {
+	animation: fadein 0.5s;
 	align-items: center;
 	padding: 0 20px;
 	max-width: 970px;
@@ -87,13 +89,22 @@ body {
 }
 
 .nav_portrait {
+	width: 27px;
+	height: 27px;
 	margin-top: 3px;
 	border-radius: 50%;
+}
+
+.nav_NoPortrait {
+	color: black;
+	font-size: 27px;
 }
 
 /* Home Container */
 
 .home_container {
+	/* flex-wrap: wrap-reverse; */
+	animation: fadein 0.5s ease-in-out;
 	padding: 0 20px;
 	height: fit-content;
 	max-width: 985px;
@@ -103,6 +114,8 @@ body {
 }
 
 .side_container {
+	animation: fadein 0.5s ease-in-out;
+	/* height: fit-content; */
 	width: 293px;
 }
 
@@ -149,6 +162,8 @@ body {
 .rweet_creator_img {
 	border-radius: 50%;
 	margin: 0px 10px 0px 15px;
+	width: 32px;
+	height: 32px;
 }
 
 .rweet_creator_name {
@@ -195,7 +210,8 @@ body {
 }
 
 .rweet_text {
-	padding: 10px;
+	line-height: 130%;
+	padding: 13px;
 	background-color: #ffffff;
 	border: 1px solid #dbdbdb;
 	border-radius: 3px;
@@ -222,7 +238,8 @@ body {
 	margin-top: 5px;
 	align-self: center;
 	width: 95%;
-	height: 220px;
+	min-height: 220px;
+	height: fit-content;
 	border-radius: 3px;
 	border: 1px solid #dbdbdb;
 	display: flex;
@@ -237,8 +254,8 @@ body {
 }
 .real_preview {
 	position: relative;
-	width: 255.55px;
-	height: 220px;
+	width: 100%;
+	height: 100%;
 	border-radius: 3px;
 }
 
@@ -258,7 +275,7 @@ body {
 	width: 95%;
 	height: 10%;
 	padding: 10px;
-	outline: 0;
+	outline: none;
 	border-radius: 3px;
 	border: 1px solid #dbdbdb;
 	resize: none;
@@ -318,9 +335,9 @@ body {
 }
 
 .default_portrait {
+	font-size: 250px;
 	color: #dbdbdb;
 	position: absolute;
-	top: 70px;
 }
 
 .real_portrait {
@@ -331,6 +348,7 @@ body {
 }
 
 .profile_menu {
+	animation: fadein 0.2s;
 	width: 100%;
 	height: fit-content;
 	border-radius: 3px;
@@ -352,6 +370,7 @@ body {
 }
 
 .editing_form {
+	animation: fadein 0.2s;
 	display: flex;
 	flex-direction: column;
 	align-items: stretch;
@@ -372,6 +391,7 @@ body {
 
 .name_form {
 	width: 190px;
+	outline: none;
 }
 
 /* Auth */
@@ -503,6 +523,14 @@ body {
 }
 
 /* Modal */
+@keyframes fadein {
+	from {
+		opacity: 0;
+	}
+	to {
+		opacity: 1;
+	}
+}
 
 .modal {
 	width: 100%;
@@ -519,6 +547,7 @@ body {
 }
 
 .modal_content {
+	animation: fadein 0.15s;
 	z-index: 4;
 	width: 500px;
 	height: fit-content;
@@ -559,6 +588,8 @@ body {
 	width: 95%;
 	height: 80%;
 	border: 1px solid #dbdbdb;
+	resize: none;
+	outline: none;
 }
 
 .edit_controller {

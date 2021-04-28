@@ -4,7 +4,7 @@ import React, { useEffect, useState } from 'react';
 import ProfileFactory from 'components/ProfileFactory';
 import Modal from 'components/Modal';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faCaretDown, faImage } from '@fortawesome/free-solid-svg-icons';
+import { faCaretDown, faUserCircle } from '@fortawesome/free-solid-svg-icons';
 
 const Profile = ({ userObj, refreshUser }) => {
 	const [rweets, setRweets] = useState([]);
@@ -15,6 +15,12 @@ const Profile = ({ userObj, refreshUser }) => {
 	const [onProfile, setOnProfile] = useState(false);
 
 	const getMyRweets = async () => {
+		// 로그인시 받아오는 profile이 없는 경우 임시 userName
+		if (!userObj.displayName) {
+			await userObj.updateProfile({
+				displayName: `User`,
+			});
+		}
 		const rweetObj = await dbService
 			.collection('rweets')
 			.where('creatorId', '==', userObj.uid)
@@ -72,7 +78,7 @@ const Profile = ({ userObj, refreshUser }) => {
 									)}
 									<FontAwesomeIcon
 										className="default_portrait"
-										icon={faImage}
+										icon={faUserCircle}
 										size="4x"
 									/>
 								</>
@@ -94,6 +100,8 @@ const Profile = ({ userObj, refreshUser }) => {
 						</div>
 						{onProfile && (
 							<ProfileFactory
+								setUpdated={setUpdated}
+								rweets={rweets}
 								setOnProfile={setOnProfile}
 								refreshUser={refreshUser}
 								userObj={userObj}
