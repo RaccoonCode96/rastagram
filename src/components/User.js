@@ -7,7 +7,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCaretDown, faUserCircle } from '@fortawesome/free-solid-svg-icons';
 import Load from 'components/Load';
 
-const Profile = ({ userObj, refreshUser }) => {
+const User = ({ userObj, refreshUser }) => {
 	const [rweets, setRweets] = useState([]);
 	const [rweetObj, setRweetObj] = useState();
 	const [onModal, setOnModal] = useState(false);
@@ -18,7 +18,6 @@ const Profile = ({ userObj, refreshUser }) => {
 	const [userInfo, setUserInfo] = useState();
 
 	const getMyRweets = async () => {
-		// 로그인시 받아오는 profile이 없는 경우 임시 userName
 		if (!userObj.displayName) {
 			userObj.updateProfile({
 				displayName: `User`,
@@ -133,4 +132,4 @@ const Profile = ({ userObj, refreshUser }) => {
 		</>
 	);
 };
-export default Profile;
+export default User;

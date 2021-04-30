@@ -13,8 +13,11 @@ const ProfileFactory = ({
 	refreshUser,
 	setOnProfile,
 	setUpdated,
+	setOnLoad,
+	userInfo,
 }) => {
 	const [newDisplayName, setNewDisplayName] = useState(userObj.displayName);
+	const [newInfo, setNewInfo] = useState(userInfo);
 	const [attachment, setAttachment] = useState('');
 	const [onEditing, setEditing] = useState(false);
 	const [doubleSubmit, setDoubleSubmit] = useState(false);
@@ -26,15 +29,30 @@ const ProfileFactory = ({
 		history.push('/');
 	};
 
-	const onChange = (event) => {
+	const onChangeName = (event) => {
 		const {
 			target: { value },
 		} = event;
 		setNewDisplayName(value);
 	};
 
+	const onChangeInfo = (event) => {
+		const {
+			target: { value },
+		} = event;
+		setNewInfo(value);
+	};
+
 	const toggleEditing = () => {
 		setEditing((prev) => !prev);
+	};
+
+	const updateInfo = async () => {
+		if (newInfo !== userInfo) {
+			dbService.collection('user').doc(userObj.uid).set({
+				info: newInfo,
+			});
+		}
 	};
 
 	const updatePhoto = async () => {
@@ -73,11 +91,13 @@ const ProfileFactory = ({
 
 	const onSubmit = async (event) => {
 		event.preventDefault();
+		setOnLoad(true);
 		if (!doubleSubmit) {
 			setDoubleSubmit(true);
 			updatePhoto();
 			updateDisplayName();
-			await Promise.all([updatePhoto(), updateDisplayName()]);
+			updateInfo();
+			await Promise.all([updatePhoto(), updateDisplayName(), updateInfo()]);
 			setAttachment('');
 			refreshUser();
 			setOnProfile(false);
@@ -85,6 +105,7 @@ const ProfileFactory = ({
 				setUpdated(Date.now());
 			}
 			setDoubleSubmit(false);
+			setOnLoad(false);
 		}
 	};
 
@@ -148,10 +169,21 @@ const ProfileFactory = ({
 								className="name_form"
 								type="text"
 								placeholder="Display name"
-								onChange={onChange}
+								onChange={onChangeName}
 								value={newDisplayName}
 							/>
 						</div>
+						<textarea
+							className="profile_form_info"
+							placeholder="Introduce yourself!"
+							onChange={onChangeInfo}
+							value={newInfo}
+							maxLength={120}
+							rows="2"
+							cols="20"
+							wrap="hard"
+							required
+						></textarea>
 						<input
 							className="profile_btn"
 							type="submit"

@@ -7,7 +7,7 @@ function App() {
 	const [init, setInit] = useState(false);
 	const [userObj, setUserObj] = useState(null);
 	useEffect(() => {
-		authService.onAuthStateChanged((user) => {
+		authService.onAuthStateChanged(async (user) => {
 			if (user) {
 				setUserObj({
 					photoURL: user.photoURL,

@@ -4,9 +4,13 @@
 
 ### Nwitter is project of Nomadcoder's lecture
 
+actually, this project was cloning twitter app
+but now I changed it to clone instagram app
+the basic structure was the same things so I decided to change
+
 ### I'm studying how to programme React with Firebase now.
 
----
+--- for twitter app
 
 2021-04-01 [Setup (React, Firebase), routes, router, components, .env(secure API)] / tistory blog : https://goforit.tistory.com/76
 
@@ -23,6 +27,8 @@
 2021-04-09 [Changing imgFile to Data_url, Uploading imgFile to firebaseStorage, download_url, FileReader API, Firestorage, a pakage(uuid) of creating rendom Id] / tistory blog : https://goforit.tistory.com/82
 
 2021-04-12 [Delete A file of firebase storage(delete, refFromURL), Edit profile, Get my own Rweets(where, orderBy), Change my name of a profile (user, displayName, updateProfile), Object resizing, Cleaning Code,] / tistory blog : https://goforit.tistory.com/83
+
+-- for instagram app
 
 2021-04-13 [change twitter to instagram CSS(Home structure, Loading page), useEffect error, cleanup function] / tistory blog : https://goforit.tistory.com/84
 

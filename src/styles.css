@@ -18,21 +18,33 @@ body {
 /* Loading */
 
 .load_container {
+	z-index: 5;
+	position: fixed;
 	animation: fadein 0.15s;
 	text-align: center;
-	width: 500px;
-	margin: 20vh auto 0px;
+	width: 100%;
+	height: 100%;
+	position: fixed;
+	content: '';
+	background-color: rgba(0, 0, 0, 0.3);
+	top: 0;
+	left: 0;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	flex-direction: column;
 }
 
 .load_title {
-	margin-bottom: 100px;
+	color: #fafafa;
 	font-size: 4rem;
 	font-family: 'Satisfy', cursive;
+	margin-bottom: 30px;
 }
 
 .load_container > .icon_insta {
+	color: #fafafa;
 	width: 140px;
-	display: inline-block;
 }
 
 /* Navigation */
@@ -154,9 +166,17 @@ body {
 	border-radius: 3px;
 	height: 60px;
 	width: 100%;
+	position: relative;
 	display: flex;
 	align-items: center;
-	position: relative;
+}
+
+.rweet_creator_link {
+	text-decoration: none;
+	height: fit-content;
+	width: fit-content;
+	display: flex;
+	align-items: center;
 }
 
 .rweet_creator_img {
@@ -167,6 +187,7 @@ body {
 }
 
 .rweet_creator_name {
+	color: black;
 	font-weight: 500;
 	font-size: 14px;
 }
@@ -235,7 +256,6 @@ body {
 }
 
 .preview_container {
-	margin-top: 5px;
 	align-self: center;
 	width: 95%;
 	min-height: 220px;
@@ -273,13 +293,12 @@ body {
 .form_rweets_text {
 	margin-top: 5px;
 	width: 95%;
-	height: 10%;
+	height: 130px;
 	padding: 10px;
 	outline: none;
 	border-radius: 3px;
 	border: 1px solid #dbdbdb;
 	resize: none;
-	resize: vertical;
 	align-self: center;
 }
 
@@ -300,7 +319,6 @@ body {
 /* profile */
 
 .profile_show {
-	margin-bottom: 30px;
 	text-align: center;
 	display: flex;
 	flex-direction: column;
@@ -318,7 +336,7 @@ body {
 }
 
 .profile_name_container {
-	margin-top: 10px;
+	margin: 10px 0;
 	width: 250px;
 	display: flex;
 	justify-content: center;
@@ -328,6 +346,33 @@ body {
 .profile_name {
 	font-size: 1.7rem;
 	margin-right: 10px;
+}
+
+.profile_info {
+	font-size: 14px;
+	text-align: left;
+	line-height: 130%;
+	padding: 13px;
+	/* background-color: #ffffff;
+	border: 1px solid #dbdbdb;
+	border-radius: 3px; */
+	min-height: 130px;
+	height: fit-content;
+	width: 100%;
+	white-space: pre-wrap;
+	word-break: break-all;
+}
+
+.profile_form_info {
+	margin-bottom: 10px;
+	width: 95%;
+	height: 130px;
+	padding: 10px;
+	outline: none;
+	border-radius: 3px;
+	border: 1px solid #dbdbdb;
+	resize: none;
+	align-self: center;
 }
 
 .profile_update_btn {
@@ -348,6 +393,7 @@ body {
 }
 
 .profile_menu {
+	margin-top: 10px;
 	animation: fadein 0.2s;
 	width: 100%;
 	height: fit-content;
@@ -537,7 +583,7 @@ body {
 	height: 100%;
 	position: fixed;
 	content: '';
-	background-color: rgba(0, 0, 0, 0.5);
+	background-color: rgba(0, 0, 0, 0.3);
 	top: 0;
 	left: 0;
 	z-index: 3;

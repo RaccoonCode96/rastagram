@@ -5,6 +5,7 @@ import {
 } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 const Rweet = ({ userObj, rweetObj, setOnModal, setRweetObj, setIsOwner }) => {
 	const toggleOnModal = () => {
@@ -17,23 +18,24 @@ const Rweet = ({ userObj, rweetObj, setOnModal, setRweetObj, setIsOwner }) => {
 		<div className="post">
 			<>
 				<div className="rweet_creator_container">
-					{rweetObj.photoUrl ? (
-						<img
-							alt="rweet_creator_img"
-							className="rweet_creator_img"
-							src={rweetObj.photoUrl}
-							width="32px"
-							height="32px"
-						/>
-					) : (
-						<FontAwesomeIcon
-							className="rweet_creator_img"
-							icon={faUserCircle}
-							size="2x"
-						/>
-					)}
-
-					<h4 className="rweet_creator_name">{rweetObj.displayName}</h4>
+					<Link to="/user" className="rweet_creator_link">
+						{rweetObj.photoUrl ? (
+							<img
+								alt="rweet_creator_img"
+								className="rweet_creator_img"
+								src={rweetObj.photoUrl}
+								width="32px"
+								height="32px"
+							/>
+						) : (
+							<FontAwesomeIcon
+								className="rweet_creator_img"
+								icon={faUserCircle}
+								size="2x"
+							/>
+						)}
+						<h4 className="rweet_creator_name">{rweetObj.displayName}</h4>
+					</Link>
 					<button className="rweet_creator_menu" onClick={toggleOnModal}>
 						<FontAwesomeIcon icon={faEllipsisH} size="1x" />
 					</button>

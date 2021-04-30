@@ -3,15 +3,17 @@ import { dbService } from 'fBase';
 import React, { useEffect, useState } from 'react';
 import RweetFactory from 'components/RweetFactory';
 import Modal from 'components/Modal';
+import Load from 'components/Load';
 
 const Home = ({ userObj }) => {
 	const [rweets, setRweets] = useState([]);
 	const [rweetObj, setRweetObj] = useState();
 	const [onModal, setOnModal] = useState(false);
 	const [isOwner, setIsOwner] = useState();
+	const [onLoad, setOnLoad] = useState(false);
 
-	useEffect(() => {
-		const getData = dbService
+	const getData = () => {
+		dbService
 			.collection('rweets')
 			.orderBy('createdAt', 'desc')
 			.onSnapshot((snapshot) => {
@@ -21,8 +23,11 @@ const Home = ({ userObj }) => {
 				}));
 				setRweets(rweetArray);
 			});
+	};
+
+	useEffect(() => {
+		getData();
 		return () => {
-			getData();
 			setRweets([]);
 			setRweetObj();
 			setOnModal(false);
@@ -46,19 +51,18 @@ const Home = ({ userObj }) => {
 					))}
 				</div>
 				<div className="side_container">
-					<RweetFactory userObj={userObj} />
+					<RweetFactory userObj={userObj} setOnLoad={setOnLoad} />
 				</div>
 			</div>
-			{onModal ? (
+			{onModal && (
 				<Modal
 					rweetObj={rweetObj}
 					setRweetObj={setRweetObj}
 					setOnModal={setOnModal}
 					isOwner={isOwner}
 				/>
-			) : (
-				<></>
 			)}
+			{onLoad && <Load />}
 		</>
 	);
 };

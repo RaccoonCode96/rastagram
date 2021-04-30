@@ -9,6 +9,7 @@ import Auth from 'routes/Auth';
 import Home from 'routes/Home';
 import Profile from 'routes/Profile';
 import Navigation from 'components/Navigation';
+import User from './User';
 
 const AppRouter = ({ refreshUser, isLoggedIn, userObj }) => {
 	return (
@@ -22,6 +23,9 @@ const AppRouter = ({ refreshUser, isLoggedIn, userObj }) => {
 						</Route>
 						<Route exact path="/profile">
 							<Profile refreshUser={refreshUser} userObj={userObj} />
+						</Route>
+						<Route exact path="/user">
+							<User refreshUser={refreshUser} userObj={userObj} />
 						</Route>
 						<Redirect from="*" to="/" />
 					</>

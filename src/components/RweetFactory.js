@@ -5,7 +5,7 @@ import { dbService, storageService } from 'fBase';
 import React, { useState } from 'react';
 import { v4 as uuidv4 } from 'uuid';
 
-const RweetFactory = ({ userObj }) => {
+const RweetFactory = ({ userObj, setOnLoad }) => {
 	const [rweet, setRweet] = useState('');
 	const [attachment, setAttachment] = useState('');
 	const [doubleSubmit, setDoubleSubmit] = useState(false);
@@ -14,6 +14,7 @@ const RweetFactory = ({ userObj }) => {
 		event.preventDefault();
 		if (!doubleSubmit) {
 			setDoubleSubmit(true);
+			setOnLoad(true);
 			let attachmentUrl = '';
 			if (attachment !== '') {
 				const attachmentRef = storageService
@@ -33,6 +34,7 @@ const RweetFactory = ({ userObj }) => {
 			};
 			await dbService.collection('rweets').add(rweetObj);
 			setRweet('');
+			setOnLoad(false);
 			setDoubleSubmit(false);
 		}
 	};

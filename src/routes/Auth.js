@@ -7,6 +7,7 @@ import React, { useState } from 'react';
 const Auth = () => {
 	const [newAccount, setNewAccount] = useState(false);
 	const [error, setError] = useState('');
+
 	const onSocialClick = async (event) => {
 		const {
 			target: { name },
@@ -17,7 +18,7 @@ const Auth = () => {
 		} else if (name === 'github') {
 			provider = new firebaseInstance.auth.GithubAuthProvider();
 		}
-		await provider.addScope('profile');
+		provider.addScope('profile');
 		await authService.signInWithPopup(provider);
 	};
 
