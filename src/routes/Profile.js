@@ -18,7 +18,7 @@ const Profile = ({ userObj, refreshUser }) => {
 	const [userInfo, setUserInfo] = useState();
 
 	const getMyRweets = async () => {
-		// 로그인시 받아오는 profile이 없는 경우 임시 userName
+		// 로그인시 받아오는 profile이 없는 경우 임시
 		if (!userObj.displayName) {
 			userObj.updateProfile({
 				displayName: `User`,
