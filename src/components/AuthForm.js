@@ -24,7 +24,9 @@ const AuthForm = ({ newAccount, setError }) => {
 				await authService.signInWithEmailAndPassword(email, password);
 			}
 		} catch (error) {
-			setError(error.message);
+			const handle = error.code.match(/(?<=\/)([a-zA-Z-]*)/g)[0];
+			const message = handle.replace(/-/g, ' ');
+			setError(message);
 		}
 	};
 
