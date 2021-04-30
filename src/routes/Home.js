@@ -12,6 +12,17 @@ const Home = ({ userObj }) => {
 	const [isOwner, setIsOwner] = useState();
 	const [onLoad, setOnLoad] = useState(false);
 
+	const setUserDb = async () => {
+		await dbService.collection('users').doc(userObj.uid).set(
+			{
+				uid: userObj.uid,
+				photoURL: userObj.photoURL,
+				displayName: userObj.displayName,
+			},
+			{ merge: true }
+		);
+	};
+
 	const getData = () => {
 		dbService
 			.collection('rweets')
@@ -27,6 +38,7 @@ const Home = ({ userObj }) => {
 
 	useEffect(() => {
 		getData();
+		setUserDb();
 		return () => {
 			setRweets([]);
 			setRweetObj();

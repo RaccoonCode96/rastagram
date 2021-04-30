@@ -25,7 +25,7 @@ const Profile = ({ userObj, refreshUser }) => {
 			});
 		}
 		const userInfoObj = await dbService
-			.collection('user')
+			.collection('users')
 			.doc(userObj.uid)
 			.get();
 		setUserInfo(userInfoObj.get('info'));

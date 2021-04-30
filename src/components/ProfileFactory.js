@@ -49,9 +49,12 @@ const ProfileFactory = ({
 
 	const updateInfo = async () => {
 		if (newInfo !== userInfo) {
-			dbService.collection('user').doc(userObj.uid).set({
-				info: newInfo,
-			});
+			dbService.collection('users').doc(userObj.uid).set(
+				{
+					info: newInfo,
+				},
+				{ merge: true }
+			);
 		}
 	};
 
