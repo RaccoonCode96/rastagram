@@ -6,6 +6,8 @@ Racstagram의 경우 Nomadcoder의 twitter 강의를 베이스로 하여 Instagr
 
 ## 화면
 
+![racstagram_loadModal](https://user-images.githubusercontent.com/76491635/132348124-aca000c4-b9e9-481e-8d93-01c37cbb197f.gif)
+
 <br/>
 
 ## 기능
